@@ -969,7 +969,7 @@ static bool get_device_parent_sessionID(io_service_t service, UInt64 *parent_ses
 
   /* Walk up the tree in the IOService plane until we find a parent that has a sessionID */
   parent = service;
-  while((kresult = IORegistryEntryGetParentEntry (parent, kIOUSBPlane, &parent)) == kIOReturnSuccess) {
+  while((kresult = IORegistryEntryGetParentEntry (parent, IOService, &parent)) == kIOReturnSuccess) {
     if (get_ioregistry_value_number (parent, CFSTR("sessionID"), kCFNumberSInt64Type, parent_sessionID)) {
         /* Success */
         return true;
